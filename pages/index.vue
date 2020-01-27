@@ -1,41 +1,39 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
         task-manager
       </h1>
+      <button @click="login">Login</button>
+       {{ message }}
       <h2 class="subtitle">
         My personal project to create task manager
       </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
 
 export default {
-  components: {
-    Logo
+  data() {
+    return {
+      message: ''
+    }
+  },
+  methods: {
+    login() {
+      this.$store.dispatch('user/googleSignIn');
+    }
+  },
+  created() {
+    this.message = 'ログインチェック中';
+    this.$store.dispatch('user/googleGetRedirectResult').then(r => {
+      console.log(r);
+      this.message = 'ログインチェック完了';
+    });
   }
-}
+};
 </script>
 
 <style>
