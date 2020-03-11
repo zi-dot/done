@@ -1,4 +1,4 @@
-require('@nuxtjs/dotenv').config();
+import env from '@nuxtjs/dotenv';
 const {
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
