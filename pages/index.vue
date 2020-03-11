@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div>
+      {{ process.env.firebaseApiKey }}
       <internal-link to="/login">
         Login
       </internal-link>
