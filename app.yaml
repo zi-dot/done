@@ -1,5 +1,5 @@
 runtime: nodejs10
-
+entrypoint: ./berglas exec -- npm build
 handlers:
   - url: /_nuxt
     static_dir: .nuxt/dist/client
@@ -19,6 +19,11 @@ handlers:
 env_variables:
   NUXT_HOST: '0.0.0.0'
   NUXT_PORT: '8080'
-
-includes:
-  - env.yaml
+  FIREBASE_API_KEY: berglas://tm-secrets/FIREBASE_API_KEY
+  FIREBASE_AUTH_DOMAIN: berglas://tm-secrets/FIREBASE_AUTH_DOMAIN
+  FIREBASE_DATABASE_URL: berglas://tm-secrets/FIREBASE_DATABASE_URL
+  FIREBASE_PROJECT_ID: berglas://tm-secrets/FIREBASE_PROJECT_ID
+  FIREBASE_STORAGE_BUCKET: berglas://tm-secrets/FIREBASE_STORAGE_BUCKET
+  FIREBASE_MESSAGING_SENDER_ID: berglas://tm-secrets/FIREBASE_MESSAGING_SENDER_ID
+  FIREBASE_APP_ID: berglas://tm-secrets/FIREBASE_APP_ID
+  FIREBASE_MEASUREMENT_ID: berglas://tm-secrets/FIREBASE_MEASUREMENT_ID

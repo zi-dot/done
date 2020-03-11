@@ -1,0 +1,16 @@
+steps:
+  - name: gcr.io/cloud-builders/curl
+    args:
+      - https://storage.googleapis.com/berglas/master/linux_amd64/berglas
+      - --output
+      - berglas
+  - name: ubuntu
+    args:
+      - chmod
+      - "777"
+      - berglas
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - app
+      - deploy
+      - app.yaml

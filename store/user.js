@@ -1,4 +1,5 @@
 import firebase from '@/plugins/firebase.js';
+const db = firebase.firestore();
 
 export const state = () => ({
   displayName: null,
@@ -19,7 +20,7 @@ export const actions = {
     let provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithRedirect(provider);
   },
-  async googleGetRedirectResult({ commit }) {
+  async googleGetRedirectResult({ commit, dispatch }) {
     return firebase
       .auth()
       .getRedirectResult()
@@ -32,6 +33,13 @@ export const actions = {
             email: user.email,
             userUid: user.uid
           });
+          if (result.additionalUserInfo.isNewUser) {
+            dispatch('registerUserToDB', {
+              displayName: user.displayName,
+              email: user.email,
+              userUid: user.uid
+            });
+          }
           return true;
         }
         return false;
@@ -43,6 +51,23 @@ export const actions = {
         let credential = error.credential;
         return false;
       });
+  },
+  async registerUserToDB(
+    { commit },
+    { userUid: userUid, displayName: displayName, email: email }
+  ) {
+    return db
+      .collection('users')
+      .doc(userUid)
+      .set({
+        displayName: displayName,
+        email: email,
+        project: []
+      })
+      .catch(e => console.log(e));
+  },
+  async googleSignInCheck() {
+    return firebase.auth().onAuthStateChanged(user => {});
   },
   async googleSignOut() {
     return firebase

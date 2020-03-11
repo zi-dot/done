@@ -1,11 +1,14 @@
 <template>
   <div class="container">
     <div>
+      <internal-link to="/login">
+        Login
+      </internal-link>
       <h1 class="title">
         task-manager
       </h1>
       <button @click="login">Login</button>
-       {{ message }}
+      {{ message }}
       <h2 class="subtitle">
         My personal project to create task manager
       </h2>
@@ -14,8 +17,11 @@
 </template>
 
 <script>
-
+  import {InternalLink} from '@/components/Atoms/';
 export default {
+  components: {
+    InternalLink
+  },
   data() {
     return {
       message: ''
