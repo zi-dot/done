@@ -10,6 +10,8 @@ steps:
       - "777"
       - berglas
   - name: gcr.io/cloud-builders/npm
+      - install
+  - name: gcr.io/cloud-builders/npm
     args:
       - run
       - build
