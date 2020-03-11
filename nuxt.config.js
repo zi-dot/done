@@ -1,5 +1,4 @@
-const path = require('path');
-require('dotenv').config();
+require('@nuxtjs/dotenv').config();
 const {
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
