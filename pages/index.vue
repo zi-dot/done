@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div>
+      {{ API_KEY }}
       <internal-link to="/login">
         Login
       </internal-link>
@@ -24,7 +25,8 @@ export default {
   },
   data() {
     return {
-      message: ''
+      message: '',
+      API_KEY: process.env.firebaseApiKey
     }
   },
   methods: {
