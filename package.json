@@ -12,20 +12,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "firebase": "^7.6.2",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "firebase": "^7.10.0",
     "nuxt": "^2.11.0",
-    "@nuxtjs/dotenv": "^1.4.1"
+    "nuxt-env": "^0.1.0"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.27",
+    "@vue/test-utils": "^1.0.0-beta.32",
     "babel-jest": "^24.1.0",
-    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.1.0",
     "prettier": "^1.16.4",
-    "vue-jest": "^4.0.0-0",
     "pug": "^2.0.4",
-    "pug-plain-loader": "^1.0.0"
+    "pug-plain-loader": "^1.0.0",
+    "vue-jest": "^4.0.0-0"
   }
 }
