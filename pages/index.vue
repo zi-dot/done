@@ -36,6 +36,16 @@ export default {
   },
   created() {
     console.log(process.env.firebaseApiKey);
+    console.log({
+      firebaseApiKey: process.env.firebaseApiKey,
+      firebaseAuthDomain: process.env.firebaseAuthDomain,
+      firebaseDatabaseUrl: process.env.firebaseDatabaseUrl,
+      firebaseProjectId: process.env.firebaseProjectId,
+      firebaseStorageBucket: process.env.firebaseStorageBucket,
+      firebaseMessagingSenderId: process.env.firebaseMessagingSenderId,
+      firebaseAppId: process.env.firebaseAppId,
+      firebaseMeasurementId: process.env.firebaseMeasurementId
+    })
     this.message = 'ログインチェック中';
     // this.$store.dispatch('user/googleGetRedirectResult').then(r => {
     //   console.log(r);
