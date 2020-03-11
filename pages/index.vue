@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import {InternalLink} from '@/components/Atoms/';
+  import {InternalLink} from '@/components/Atoms/index.js';
 export default {
   components: {
     InternalLink
