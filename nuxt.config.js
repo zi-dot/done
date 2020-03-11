@@ -1,4 +1,15 @@
 const path = require('path');
+require('dotenv').config();
+const {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DATABASE_URL,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID,
+  FIREBASE_MEASUREMENT_ID
+} = process.env;
 export default {
   mode: 'universal',
   /*
@@ -26,14 +37,14 @@ export default {
    */
   css: [],
   env: {
-    firebaseApiKey: process.env.FIREBASE_API_KEY || '',
-    firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN || '',
-    firebaseDatabaseUrl: process.env.FIREBASE_DATABASE_URL || '',
-    firebaseProjectId: process.env.FIREBASE_PROJECT_ID || '',
-    firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET || '',
-    firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || '',
-    firebaseAppId: process.env.FIREBASE_APP_ID || '',
-    firebaseMeasurementId: process.env.FIREBASE_MEASUREMENT_ID || ''
+    firebaseApiKey: FIREBASE_API_KEY || '',
+    firebaseAuthDomain: FIREBASE_AUTH_DOMAIN || '',
+    firebaseDatabaseUrl: FIREBASE_DATABASE_URL || '',
+    firebaseProjectId: FIREBASE_PROJECT_ID || '',
+    firebaseStorageBucket: FIREBASE_STORAGE_BUCKET || '',
+    firebaseMessagingSenderId: FIREBASE_MESSAGING_SENDER_ID || '',
+    firebaseAppId: FIREBASE_APP_ID || '',
+    firebaseMeasurementId: FIREBASE_MEASUREMENT_ID || ''
   },
   /*
    ** Plugins to load before mounting the App
