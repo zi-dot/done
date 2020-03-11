@@ -33,7 +33,7 @@ export default {
     }
   },
   created() {
-    console.log(process.env.FIREBASE_API_KEY);
+    console.log(process.env.firebaseApiKey);
     this.message = 'ログインチェック中';
     this.$store.dispatch('user/googleGetRedirectResult').then(r => {
       console.log(r);
