@@ -1,8 +1,8 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-setTimeout(() => {
+export default (context, inject) => {
   console.log('firebase setup');
   if (!firebase.apps.length) {
     firebase.initializeApp({
@@ -16,6 +16,9 @@ setTimeout(() => {
       measurementId: process.env.FIREBASE_MEASUREMENT_ID
     });
   }
-  console.log('finish setup');
-  export default firebase;
-}, 1000);
+  console.log('setup finished');
+
+  inject('firebase', firebase);
+  inject('firestore', firebase.firestore());
+  inject('auth', firebase.auth());
+};

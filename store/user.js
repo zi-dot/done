@@ -1,7 +1,3 @@
-import firebase from '@/plugins/firebase.js';
-
-const db = firebase.firestore();
-
 export const state = () => ({
   displayName: null,
   email: null,
@@ -18,17 +14,15 @@ export const mutations = {
 
 export const actions = {
   async googleSignIn({ commit, state }) {
-    let provider = new firebase.auth.GoogleAuthProvider();
-    return firebase.auth().signInWithRedirect(provider);
+    let provider = new this.$firebase.auth.GoogleAuthProvider();
+    return this.$auth.signInWithRedirect(provider);
   },
   async googleGetRedirectResult({ commit, dispatch }) {
-    return firebase
-      .auth()
+    return this.$auth
       .getRedirectResult()
       .then(function(result) {
         const user = result.user;
         if (user != null) {
-          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
           commit('setUser', {
             displayName: user.displayName,
             email: user.email,
@@ -57,7 +51,7 @@ export const actions = {
     { commit },
     { userUid: userUid, displayName: displayName, email: email }
   ) {
-    return db
+    return this.$firestore
       .collection('users')
       .doc(userUid)
       .set({
@@ -68,11 +62,10 @@ export const actions = {
       .catch(e => console.log(e));
   },
   async googleSignInCheck() {
-    return firebase.auth().onAuthStateChanged(user => {});
+    return this.$auth.onAuthStateChanged(user => {});
   },
   async googleSignOut() {
-    return firebase
-      .auth()
+    return this.$auth
       .signOut()
       .then()
       .catch(e => console.log(e));
