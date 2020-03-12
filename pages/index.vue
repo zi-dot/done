@@ -35,16 +35,16 @@ export default {
     }
   },
   created() {
-    console.log(this.$env.firebaseApiKey);
+    console.log(process.env.FIREBASE_API_KEY);
     console.log({
-      firebaseApiKey: this.$env.firebaseApiKey,
-      firebaseAuthDomain: this.$env.firebaseAuthDomain,
-      firebaseDatabaseUrl: this.$env.firebaseDatabaseUrl,
-      firebaseProjectId: this.$env.firebaseProjectId,
-      firebaseStorageBucket: this.$env.firebaseStorageBucket,
-      firebaseMessagingSenderId: this.$env.firebaseMessagingSenderId,
-      firebaseAppId: this.$env.firebaseAppId,
-      firebaseMeasurementId: this.$env.firebaseMeasurementId
+      firebaseApiKey: process.env.FIREBASE_API_KEY,
+      firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      firebaseDatabaseUrl: process.env.FIREBASE_DATABASE_URL,
+      firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
+      firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+      firebaseAppId: process.env.FIREBASE_APP_ID,
+      firebaseMeasurementId: process.env.FIREBASE_MEASUREMENT_ID
     })
     this.message = 'ログインチェック中';
     // this.$store.dispatch('user/googleGetRedirectResult').then(r => {
