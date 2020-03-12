@@ -25,6 +25,7 @@
       this.$store.dispatch('user/googleGetRedirectResult').then(r => {
         console.log(r);
         this.message = 'ログインチェック完了';
+        this.message = this.$store.getters['user/getUser'];
       });
     }
   }

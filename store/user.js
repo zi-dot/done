@@ -5,17 +5,27 @@ export const state = () => ({
 });
 
 export const mutations = {
-  setUser(state, { displayName, email, userUid }) {
+  SET_USER(state, { displayName, email, userUid }) {
     state.displayName = displayName;
     state.email = email;
     state.userUid = userUid;
   }
 };
 
+export const getters = {
+  getUser(state) {
+    return state.displayName;
+  }
+};
+
 export const actions = {
   async googleSignIn({ commit, state }) {
     let provider = new this.$firebase.auth.GoogleAuthProvider();
-    return this.$auth.signInWithRedirect(provider);
+    return this.$auth
+      .setPersistence(this.$firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        this.$auth.signInWithRedirect(provider);
+      });
   },
   async googleGetRedirectResult({ commit, dispatch }) {
     return this.$auth
@@ -23,7 +33,7 @@ export const actions = {
       .then(function(result) {
         const user = result.user;
         if (user != null) {
-          commit('setUser', {
+          commit('SET_USER', {
             displayName: user.displayName,
             email: user.email,
             userUid: user.uid

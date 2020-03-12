@@ -3,7 +3,6 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 export default (context, inject) => {
-  console.log('firebase setup');
   if (!firebase.apps.length) {
     firebase.initializeApp({
       apiKey: process.env.FIREBASE_API_KEY,
@@ -16,7 +15,6 @@ export default (context, inject) => {
       measurementId: process.env.FIREBASE_MEASUREMENT_ID
     });
   }
-  console.log('setup finished');
 
   inject('firebase', firebase);
   inject('firestore', firebase.firestore());
