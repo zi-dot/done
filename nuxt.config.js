@@ -27,7 +27,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/injectEnv.js' }],
+  plugins: [
+    { src: '~/plugins/injectEnv.js' },
+    { src: '~/plugins/firebase.js', mode: 'client' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
