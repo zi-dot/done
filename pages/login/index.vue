@@ -22,6 +22,7 @@
     },
     created() {
       this.message = 'ログインチェック中';
+      console.table(this.$firebase.apps[0].options)
       this.$store.dispatch('user/googleGetRedirectResult').then(r => {
         console.log(r);
         this.message = 'ログインチェック完了';
