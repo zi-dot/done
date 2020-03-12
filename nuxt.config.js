@@ -29,7 +29,7 @@ export default {
    */
   plugins: [
     { src: '~/plugins/injectEnv.js' },
-    { src: '~/plugins/firebase.js', mode: 'client' }
+    { src: '~/plugins/firebase.js' }
   ],
   /*
    ** Nuxt.js dev-modules
