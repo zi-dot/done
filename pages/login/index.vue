@@ -21,7 +21,7 @@
       }
     },
     created() {
-      console.log(process.env.FIREBASE_API_KEY);
+      console.log('index created at ' + process.env.FIREBASE_API_KEY);
       this.message = 'ログインチェック中';
       this.$store.dispatch('user/googleGetRedirectResult').then(r => {
         console.log(r);

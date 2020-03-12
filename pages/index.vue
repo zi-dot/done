@@ -33,6 +33,7 @@ export default {
     }
   },
   created() {
+    console.log('page index' + process.env.FIREBASE_APP_ID);
     this.message = 'ログインチェック中';
     this.$store.dispatch('user/googleGetRedirectResult').then(r => {
       console.log(r);
