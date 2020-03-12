@@ -21,12 +21,11 @@
       }
     },
     created() {
-      console.log('index created at ' + process.env.FIREBASE_API_KEY);
       this.message = 'ログインチェック中';
-      this.$store.dispatch('user/googleGetRedirectResult').then(r => {
-        console.log(r);
-        this.message = 'ログインチェック完了';
-      });
+      // this.$store.dispatch('user/googleGetRedirectResult').then(r => {
+      //   console.log(r);
+      //   this.message = 'ログインチェック完了';
+      // });
     }
   }
 </script>

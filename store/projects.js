@@ -1,1 +1,1 @@
-import firebase from '@/plugins/firebase.js';
+// import firebase from '@/plugins/firebase.js';
