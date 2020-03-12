@@ -47,6 +47,7 @@ export const actions = {
           }
           return true;
         }
+        console.log('failed result' + result);
         return false;
       })
       .catch(function(error) {
@@ -54,6 +55,12 @@ export const actions = {
         let errorMessage = error.message;
         let email = error.email;
         let credential = error.credential;
+        console.table({
+          errorCode: errorCode,
+          errorMessage: errorMessage,
+          email: email,
+          credential: credential
+        });
         return false;
       });
   },
