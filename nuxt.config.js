@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/awesomeInjectEnv.js', '~/plugins/firebase.js'],
+  plugins: ['~/plugins/InjectEnv.js', '~/plugins/firebase.js'],
   /*
    ** Nuxt.js dev-modules
    */
