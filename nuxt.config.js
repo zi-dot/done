@@ -17,17 +17,21 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-   ** Customize the progress-bar color
-   */
-  loading: { color: '#fff' },
-  /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    // node.js module but we specify the pre-processor
+    { src: '~assets/scss/main.scss', lang: 'sass' }
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/InjectEnv.js', '~/plugins/firebase.js'],
+  plugins: [
+    '~/plugins/InjectEnv.js',
+    '~/plugins/firebase.js',
+    '~/plugins/checkLogin.js',
+    '~/plugins/navGuard.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */

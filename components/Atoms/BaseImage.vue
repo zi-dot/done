@@ -1,5 +1,5 @@
-<template lang="pug">
-  img.base-image(:src="src" @error="error" @click="onClick()" alt="alt")
+<template>
+  <img class="base-image" :src="src" @error="error" @click="onClick()" alt="alt"/>
 </template>
 
 <script>
@@ -8,7 +8,8 @@
     props: {
       src: {
         type: String,
-        required: true
+        required: true,
+        default: ''
       },
       alt: {
         type: String,

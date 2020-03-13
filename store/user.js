@@ -1,7 +1,7 @@
 export const state = () => ({
-  displayName: null,
-  email: null,
-  userUid: null
+  displayName: '',
+  email: '',
+  userUid: ''
 });
 
 export const mutations = {
@@ -9,12 +9,22 @@ export const mutations = {
     state.displayName = displayName;
     state.email = email;
     state.userUid = userUid;
+  },
+  SIGN_OUT(state) {
+    state.displayName = '';
+    state.email = '';
+    state.userUid = '';
   }
 };
 
 export const getters = {
-  getUser(state) {
+  getDisplayName(state) {
     return state.displayName;
+  },
+  isAuthenticated(state) {
+    return (
+      state.displayName !== '' && state.email !== '' && state.userUid !== ''
+    );
   }
 };
 
@@ -32,37 +42,49 @@ export const actions = {
       .getRedirectResult()
       .then(function(result) {
         const user = result.user;
+        let retObj = {
+          success: true,
+          user: null,
+          isNewUser: false
+        };
         if (user != null) {
-          commit('SET_USER', {
-            displayName: user.displayName,
-            email: user.email,
-            userUid: user.uid
-          });
+          retObj.user = user;
           if (result.additionalUserInfo.isNewUser) {
+            retObj.isNewUser = true;
             dispatch('registerUserToDB', {
               displayName: user.displayName,
               email: user.email,
               userUid: user.uid
             });
           }
-          return true;
+          retObj.isNewUser = false;
         }
-        console.log('failed result' + result);
-        return false;
+        return retObj;
       })
       .catch(function(error) {
         let errorCode = error.code;
         let errorMessage = error.message;
         let email = error.email;
         let credential = error.credential;
-        console.table({
-          errorCode: errorCode,
-          errorMessage: errorMessage,
-          email: email,
-          credential: credential
-        });
-        return false;
+        return {
+          success: false,
+          isNewUser: false
+        };
       });
+  },
+  async googleCheckLoggedIn({ commit }) {
+    return new Promise((res, rej) => {
+      this.$auth.onAuthStateChanged(function(user) {
+        if (user) {
+          commit('SET_USER', {
+            displayName: user.displayName,
+            email: user.email,
+            userUid: user.uid
+          });
+        }
+        res(user !== null);
+      });
+    });
   },
   async registerUserToDB(
     { commit },
@@ -78,13 +100,13 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
-  async googleSignInCheck() {
-    return this.$auth.onAuthStateChanged(user => {});
-  },
-  async googleSignOut() {
+  async googleSignOut({ commit }) {
     return this.$auth
       .signOut()
-      .then()
+      .then(r => {
+        commit('SIGN_OUT');
+        this.$router.push('/');
+      })
       .catch(e => console.log(e));
   }
 };
