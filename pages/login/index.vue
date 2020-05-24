@@ -8,6 +8,14 @@
       alt="Google Login"
       @click="login()"
     />
+    <base-image
+      class="google-login-btn"
+      :src="
+        require('~/assets/images/svg/cladinwoob-logo.svg')
+      "
+      alt="Google Login"
+      @click="login()"
+    />
     <input-with-label
       id="test"
       placeholder="test"
